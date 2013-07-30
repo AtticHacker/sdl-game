@@ -3,18 +3,17 @@ module End.Global.Loop where
 import qualified Graphics.UI.SDL.Time as SdlTime
 import End.Collection
 import End.Collection.Header
-import Data.Word
 import End.UI
 import Graphics.UI.SDL as SDL hiding (name)
 import End.Collection.Util
 
-getNewTick :: GameState Word32
-getNewTick = do
+setNewTick :: GameState ()
+setNewTick = do
     d <- liftIO SdlTime.getTicks
-    use delta >>= \dl -> return $ d -dl
+    use oldTick >>= \dl -> newTick .= d -dl
 
 updateDelta :: GameState ()
-updateDelta = liftIO SdlTime.getTicks >>= (delta .=)
+updateDelta = liftIO SdlTime.getTicks >>= (oldTick .=)
 
 inputAndLoop :: GameState () -> Surface -> GameState ()
 inputAndLoop loop s = do

@@ -19,3 +19,5 @@ mapWidth         = 100
 mapHeight        = 100
 mapWidthPx       = mapWidth  * 32
 mapHeightPx      = mapHeight * 32
+playerVel :: Float
+playerVel = 200

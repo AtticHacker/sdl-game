@@ -6,13 +6,14 @@ import End.Header.Animation
 import qualified Data.ByteString.Char8 as B
 
 data Obj = Obj
-    { _objIden     :: Int
-    , _objName     :: B.ByteString
-    , _objSprite   :: Sprite
-    , _objPos      :: Pos
-    , _objVel      :: Vel
-    , _objExpire   :: (Obj -> Bool)
-    , _objFunction :: (Word32 -> Obj -> Obj)
+    { _objIden      :: Int
+    , _objName      :: B.ByteString
+    , _objSpriteStatus :: SpriteStatus
+    , _objPos       :: Pos
+    , _objVel       :: Vel
+    , _objExpire    :: (Obj -> Bool)
+    , _objFunction  :: (Word32 -> Obj -> Obj)
+    , _objDirection :: Direction
     }
 
 data Camera = Camera
@@ -37,9 +38,10 @@ makeFields ''Vel
 
 class ( HasIden a Int
       , HasName a B.ByteString
-      , HasSprite a e
+      , HasSpriteStatus a e
       , HasPos a Pos
       , HasVel a Vel
       , HasExpire a (a -> Bool)
       , HasFunction a (Word32 -> a -> a)
+      , HasDirection a Direction
       ) => Object a e

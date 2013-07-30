@@ -1,19 +1,24 @@
 module End.Game where
 
-import End.Collection        (view)
-import End.Collection.Header (GameState, gameScreen)
-import End.Collection.Object (move, drawPlayer, drawObjects)
-import End.Global.Loop       (getNewTick, updateDelta, drawBG, inputAndLoop)
+import End.Collection
+import End.Collection.Util
+import End.Collection.Header
+import End.Collection.Object (move, drawObjects, drawObject)
+import End.Global.Loop       (setNewTick, updateDelta, drawBG, inputAndLoop)
+import Graphics.UI.SDL
+import Graphics.UI.SDL.Time as SdlTime
 
 game :: GameState ()
 game = do
-    newTick <- getNewTick
+    setNewTick
     gamescreen <- view gameScreen
-    move newTick
+    move
+
     updateDelta
 
     drawBG      gamescreen
-    drawPlayer  gamescreen
-    drawObjects gamescreen newTick
+    use player >>= drawObject gamescreen
+    drawObjects gamescreen
+
 
     inputAndLoop game gamescreen

@@ -35,3 +35,5 @@ executable project-end
     , random     >= 1.0
     , SDL-image  >= 0.6
     , bytestring >= 0.9
+    , SDL-gfx    >= 0.6
+  ghc-options: -Wall -fno-warn-unused-do-bind

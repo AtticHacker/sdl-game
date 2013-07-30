@@ -11,16 +11,17 @@ import End.Header.Objectlist
 import Data.Word
 
 data Gamestate = Gamestate
-                 { _gamestatePlayer    :: Player
-                 , _gamestateObjects   :: Objectlist
-                 , _gamestateDelta     :: Word32
---                 , _gamestateFrameRate :: Word32
+                 { _gamestatePlayer   :: Player
+                 , _gamestateObjects  :: Objectlist
+                 , _gamestateOldTick  :: Word32
+                 , _gamestateNewTick  :: Word32
                  }
 
 data Gameconfig = Gameconfig
-                  { _gameconfigScreen :: Screen
+                  { _gameconfigScreen     :: Screen
                   , _gameconfigGameScreen :: Surface
-                  } deriving Show
+                  , _gameconfigImages     :: [(SpriteTag, Sprite)]
+                  }
 
 data Screen = Screen
               { _screenW :: Int

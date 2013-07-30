@@ -3,3 +3,4 @@
 :set -fglasgow-exts -XFlexibleInstances
 :set -fglasgow-exts -XOverloadedStrings
 :set -fglasgow-exts -XFlexibleContexts
+:set -fno-warn-unused-do-bind

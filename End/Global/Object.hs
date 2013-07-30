@@ -2,56 +2,63 @@ module End.Global.Object where
 
 import End.Collection
 import Graphics.UI.SDL
-import End.Collection.Util
 import End.Collection.Header
-import Data.Word
 import End.Constant.Settings
 import qualified Graphics.UI.SDL.Time as SdlTime
-
-runOnSelf :: (a -> a -> b) -> a -> b
-runOnSelf f a = (f a) a
-
-generateID :: [Int] -> IO Int
-generateID xs = do
-    rand <- randomInt 1 99999
-    return $ generateID' rand xs
-
-generateID' :: Int -> [Int] -> Int
-generateID' _ [] = 1
-generateID' i xs
-    | i `elem` xs = generateID' (i+1) xs
-    | otherwise   = i
-
-removeObj :: (Eq a, HasIden a1 a, HasIden s a) => s -> [a1] -> [a1]
-removeObj _ [] = []
-removeObj a (x':xs)
-    | a^.iden /= x'^.iden = x' : removeObj a xs
-    | otherwise           = foldr (\o acc -> o : acc)
-                            xs $ removeObj a []
-
-addObject :: (MonadState s m, HasObjects s e) =>
-             (([a] -> Mutator [a]) -> e -> Mutator e) -> a -> m ()
-addObject s o = objects.s %= (o:)
-
-loadImagePlayer p = loadImage (p^.sprite.animation.image) $ Just (0xee,0xff,0xde)
-
-drawObject :: (Object s Sprite) => Surface -> s -> GameState Bool
-drawObject s p = do
-    a <- liftIO $ loadImagePlayer p
-    liftIO $ blitSurface a (Just $ Rect 10 10 50 100) s offset
-  where offset = Just $ Rect (fromEnum (p^.pos.x)) (fromEnum (p^.pos.y)) 0 0
+import End.Function.Object
 
 
-drawObjects :: Surface -> Word32 -> GameState [Bool]
-drawObjects s = manageObjects temps temps s
+getSprite :: (Object t SpriteStatus) => t -> GameState (Maybe Sprite)
+getSprite b = view images >>= return . lookup (b^.spriteStatus.tag)
 
-manageObjects :: Object a Sprite =>
+getSpriteAction :: (Object t SpriteStatus) => t -> GameState (Maybe AAction)
+getSpriteAction b = do
+    Just sp <- getSprite b
+    return $ lookup (b^.spriteStatus.actionTag) (sp^.animation.actions)
+
+fpsToInt :: (Integral a, Num b) => a -> b
+fpsToInt f = fromIntegral (1000 `div` f)
+
+nextFrame :: Object s SpriteStatus => s -> GameState ()
+nextFrame o = do
+    Just z <- o&getSpriteAction
+    if o^.spriteStatus.lastFrame > fpsToInt (z^.fps)
+        then if o^.spriteStatus.frame > z^.maxFrames - 2
+             then player.spriteStatus.frame .= 0
+                  >> player.spriteStatus.lastFrame .= 0
+             else player.spriteStatus.frame += 1
+                  >> player.spriteStatus.lastFrame .= 0
+        else return ()
+
+drawObject :: (Object a SpriteStatus) => Surface -> a -> GameState Bool
+drawObject s o = do
+    use newTick >>= (player.spriteStatus.lastFrame +=)
+    nextFrame o
+    drawFrame s o
+
+drawFrame :: (Object a SpriteStatus) => Surface -> a -> GameState Bool
+drawFrame s o = do
+    Just v <- getSprite o
+    Just a <- getSpriteAction o
+
+    liftIO $ blitSurface (v^.animation.image)
+        (Just $ Rect
+         (fromEnum  (a^.w) * (o^.spriteStatus.frame))
+         (a^.h * (dirId $ o^.direction))
+         (a^.w)
+         (a^.h)) s offset
+  where offset = Just $ Rect (fromEnum (o^.pos.x)) (fromEnum (o^.pos.y)) 0 0
+
+drawObjects :: Surface -> GameState [Bool]
+drawObjects s = use newTick >>= manageObjects temps temps s
+
+manageObjects :: Object a SpriteStatus =>
                  (([a] -> Accessor [a] [a]) -> Objectlist
                   -> Accessor [a] Objectlist) ->
                  (([a] -> Mutator [a]) -> Objectlist ->
                   Mutator Objectlist) -> Surface ->
-                 Word32 ->
-                 ReaderT Gameconfig (StateT Gamestate IO) [Bool]
+                 Word32 -> GameState [Bool]
+
 manageObjects objT1 objT2 s d = do
     objects.objT2.traverse %= (objectFunction d)
     objs <- use $ objects.objT1
@@ -61,27 +68,15 @@ manageObjects objT1 objT2 s d = do
 getNewTick :: GameState Word32
 getNewTick = do
     d <- liftIO SdlTime.getTicks
-    use delta >>= \dl -> return $ d -dl
+    use oldTick >>= \dl -> return $ d -dl
 
+objectFunction :: (Object a SpriteStatus) => Word32 -> a -> a
+objectFunction b a = (a^.function) b a
 
-isExpired :: (Object a b) => [a] -> [a]
-isExpired [] = []
-isExpired (xx:xs)
-    | (xx^.expire) xx = isExpired xs
-    | otherwise       = xx : isExpired xs
-
-
--- objectFunction :: (Object a e) => a -> a
--- objectFunction = runOnSelf $ (^.function)
-objectFunction :: (Object a e) => Word32 -> a -> a
-objectFunction w o = (o^.function) w o
-
-drawPlayer :: Surface -> GameState Bool
-drawPlayer s = use player >>= drawObject s
-
-move :: Word32 -> GameState ()
-move deltaTicks = do
+move :: GameState ()
+move = do
     cPlayer <- use player
+    deltaTicks <- use newTick
     let x'  = cPlayer^.pos.x + (cPlayer^.vel.x * (fromIntegral deltaTicks / 1000.0))
         y'  = cPlayer^.pos.y + (cPlayer^.vel.y * (fromIntegral deltaTicks / 1000.0))
         x'' = if x' < 0 then 0 else
@@ -89,16 +84,3 @@ move deltaTicks = do
         y'' = if y' < 0 then 0 else
                 if (y' + fromIntegral 150) > fromIntegral screenHeight then fromIntegral $ screenHeight - 150 else y'
     player.pos .= Pos x'' y''
-
-
-intersects :: (Float, Float) -> Rect -> [Rect] -> Bool
-intersects (cx,cy) Rect {rectX=px,rectY=py,rectW=pw,rectH=ph } list = checkRects list
-  where t = truncate
-        checkRects [] = False
-        checkRects (Rect {rectX=bx,rectY=by,rectW=bw,rectH=bh }:xs) =
-          if py + ph > by - t cy
-          && py      < by + bh - t cy
-          && px + pw > bx - t cx
-          && px      < bx + bw - t cx
-          then True
-          else checkRects xs
