@@ -14,3 +14,10 @@ Install
 Run the game
 ============
     ./dist/build/project-end/project-end
+
+
+
+
+![Image1](https://raw.github.com/AtticHacker/sdl-game/master/images/game1.png)
+
+![Image2](https://raw.github.com/AtticHacker/sdl-game/master/images/game2.png)
