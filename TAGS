@@ -1,0 +1,460 @@
+
+./Main.hs,85
+module Main where0,1
+main ::8,9
+main =9,10
+startState ::14,15
+startState =15,16
+
+./dist/build/autogen/Paths_project_end.hs,685
+module Paths_project_end (0,1
+catchIO ::11,12
+catchIO =12,13
+version ::15,16
+version =16,17
+bindir, libdir, datadir, libexecdir :: FilePath17,18
+bindir, libdir, datadir, libexecdir :: FilePath17,18
+bindir, libdir, datadir, libexecdir17,18
+bindir, libdir,17,18
+bindir     =19,20
+libdir     =20,21
+datadir    =21,22
+libexecdir =22,23
+getBinDir, getLibDir, getDataDir, getLibexecDir :: IO FilePath24,25
+getBinDir, getLibDir, getDataDir, getLibexecDir :: IO24,25
+getBinDir, getLibDir, getDataDir, getLibexecDir24,25
+getBinDir, getLibDir,24,25
+getBinDir =25,26
+getLibDir =26,27
+getDataDir =27,28
+getLibexecDir =28,29
+getDataFileName ::30,31
+getDataFileName name31,32
+
+./Setup.hs,11
+main =1,2
+
+./End/Object/Collection.hs,124
+module End.Object.Collection where0,1
+data Objectlist =5,6
+data Objectlist = Objectlist5,6
+    { _objectlistTemps ::6,7
+
+./End/Object/Fireball.hs,94
+module End.Object.Fireball where0,1
+fireBall ::10,11
+fireBall =11,12
+goRightObject a23,24
+
+./End/Object/Temp.hs,33
+module End.Object.Temp where0,1
+
+./End/Global/Loop.hs,275
+module End.Global.Loop where0,1
+managePlayer ::12,13
+managePlayer s13,14
+manageObjects ::24,25
+manageObjects s25,26
+manageObjects' objT127,28
+updateDelta ::34,35
+updateDelta =35,36
+inputAndLoop ::40,41
+inputAndLoop loop41,42
+drawBG ::45,46
+drawBG gamescreen46,47
+
+./End/Global/Drawing.hs,114
+module End.Global.Drawing where0,1
+applySurface ::8,9
+applySurface xx9,10
+drawFrame ::12,13
+drawFrame s13,14
+
+./End/Global/Object.hs,591
+module End.Global.Object where0,1
+fpsToInt ::9,10
+fpsToInt f10,11
+nextFrame ::12,13
+nextFrame sa13,14
+manageFrames ::24,25
+manageFrames o25,26
+manageFrames' ::30,31
+manageFrames' t31,32
+objectFunction ::33,34
+objectFunction b34,35
+fI ::36,37
+fI =37,38
+intersects ::39,40
+intersects _40,41
+moveUp ::50,51
+moveUp x'51,52
+manageMove ::56,57
+manageMove o57,58
+moveFPS ::63,64
+moveFPS a64,65
+move ::66,67
+move sp67,68
+getWalk ::76,77
+getWalk v77,78
+getDir ::80,81
+getDir d81,82
+manageCamera ::87,88
+manageCamera p88,89
+moveCamera ::92,93
+moveCamera deltaTicks93,94
+
+./End/Area/Tiles.hs,142
+module End.Area.Tiles where0,1
+tileListTup ::5,6
+tileListTup []6,7
+tileList' ::11,12
+tileList' =12,13
+tileList ::14,15
+tileList =15,16
+
+./End/Area/Tile.hs,707
+module End.Area.Tile where1,2
+parPair ::15,16
+parPair (a,b)16,17
+splitHalf ::21,22
+splitHalf xs22,23
+drawAllTiles ::40,41
+drawAllTiles dst41,42
+drawRowsList _57,58
+drawRows ::67,68
+drawRows _69,70
+getTilesToDraw ::79,80
+getTilesToDraw =80,81
+playerView ::89,90
+playerView =90,91
+getTile ::96,97
+getTile i97,98
+makeCollisionRects ::115,116
+makeCollisionRects theMap116,117
+getRectsFromID ::133,134
+getRectsFromID xs134,135
+combine ::136,137
+combine _137,138
+filterRects ::160,161
+filterRects []161,162
+splitMap ::165,166
+splitMap _166,167
+mapToColMap ::171,172
+mapToColMap a172,173
+drawColls ::174,175
+drawColls s175,176
+filterNearbyTiles ::186,187
+filterNearbyTiles _187,188
+
+./End/Area/Player.hs,24
+module Player where0,1
+
+./End/Init.hs,250
+module End.Init where0,1
+loadImageSprite ::14,15
+loadImageSprite p15,16
+myPlayer ::17,18
+myPlayer d18,19
+dead ::24,25
+dead =25,26
+screenRes ::27,28
+screenRes =28,29
+initState ::30,31
+initState =31,32
+initConfig ::35,36
+initConfig =36,37
+
+./End/Collection.hs,26
+module End.Collection0,1
+
+./End/Sprite/Fireball.hs,181
+module End.Sprite.Fireball where0,1
+fireballSprite  ::6,7
+fireballSprite =7,8
+pAnimation ::11,12
+pAnimation s12,13
+oStand ::14,15
+oStand =15,16
+oWalk ::18,19
+oWalk  =19,20
+
+./End/Sprite/Player.hs,183
+module End.Sprite.Player where0,1
+pSprite ::6,7
+pSprite =7,8
+pAnimation ::11,12
+pAnimation s12,13
+playerStand ::14,15
+playerStand =15,16
+playerWalk ::18,19
+playerWalk =19,20
+
+./End/Sprite/Fate.hs,161
+module End.Sprite.Fate where0,1
+pSprite ::6,7
+pSprite =7,8
+pAnimation ::11,12
+pAnimation s12,13
+oStand ::14,15
+oStand =15,16
+oWalk ::18,19
+oWalk =19,20
+
+./End/Game.hs,80
+module End.Game where0,1
+game ::10,11
+game =11,12
+loop ::15,16
+loop =16,17
+
+./End/Util/Random.hs,145
+module End.Util.Random where0,1
+randomPerc ::4,5
+randomPerc i5,6
+randomInt ::9,10
+randomInt i10,11
+randomFloat ::12,13
+randomFloat i13,14
+
+./End/Util/State.hs,113
+module End.Util.State where0,1
+setS ::4,5
+setS =5,6
+(##) :: MonadState7,8
+a ##8,9
+(###) :: MonadState10,11
+
+./End/Util/Animation.hs,189
+module End.Util.Animation where0,1
+loadImage ::8,9
+loadImage filename9,10
+setColorKey' ::11,12
+setColorKey' Nothing12,13
+mapRGB' ::15,16
+mapRGB' =16,17
+--animationRectangles o18,19
+
+./End/Util/Monad.hs,92
+module End.Util.Monad where0,1
+revMapM ::3,4
+revMapM _4,5
+revForM ::8,9
+revForM []9,10
+
+./End/Util/Screen.hs,65
+module End.Util.Screen where1,2
+myScreen ::8,9
+myScreen =9,10
+
+./End/Collection/Util.hs,31
+module End.Collection.Util0,1
+
+./End/Collection/Header.hs,33
+module End.Collection.Header0,1
+
+./End/Collection/Object.hs,33
+module End.Collection.Object0,1
+
+./End/Header/Object/Temp.hs,437
+module End.Header.Object.Temp where0,1
+data Temp =7,8
+data Temp = Temp7,8
+              { _tempIden      ::8,9
+              , _tempName      ::9,10
+              , _tempLifeTime  ::10,11
+              , _tempFunction  ::11,12
+              , _tempSpriteStatus ::12,13
+              , _tempPos       ::13,14
+              , _tempVel       ::14,15
+              , _tempExpire    ::15,16
+              , _tempDirection ::16,17
+
+./End/Header/Tile.hs,375
+module End.Header.Tile where0,1
+type Map =6,7
+data Tile =8,9
+data Tile = Tile8,9
+            { _tileIdent     ::9,10
+            , _tileCollision ::10,11
+type Tiles =13,14
+type CollisionCords =15,16
+type RectID =17,18
+lookupCol ::21,22
+lookupCol _22,23
+getCollTup ::27,28
+getCollTup =28,29
+fromRect ::30,31
+fromRect (Rect31,32
+getColl ::33,34
+getColl 034,35
+
+./End/Header/Config.hs,782
+module End.Header.Config where0,1
+data Gamestate =13,14
+data Gamestate = Gamestate13,14
+                 { _gamestatePlayer   ::14,15
+                 , _gamestateObjects  ::15,16
+                 , _gamestateOldTick  ::16,17
+                 , _gamestateNewTick  ::17,18
+data Gameconfig =20,21
+data Gameconfig = Gameconfig20,21
+                  { _gameconfigScreen     ::21,22
+                  , _gameconfigGameScreen ::22,23
+                  , _gameconfigImages     ::23,24
+                  , _gameconfigTileSet    ::24,25
+                  , _gameconfigGameMap    ::25,26
+                  , _gameconfigColls      ::26,27
+data Screen =29,30
+data Screen = Screen29,30
+              { _screenW ::30,31
+              , _screenH ::31,32
+type GameState =34,35
+
+./End/Header/Animation.hs,1342
+module End.Header.Animation where0,1
+type BGColor =5,6
+data SpriteTag =7,8
+data SpriteTag = PlayerT7,8
+               | FireballT8,9
+data Direction =11,12
+data Direction = DDynamic11,12
+               | DUp12,13
+               | DRight13,14
+               | DDown14,15
+               | DLeft15,16
+dirId ::18,19
+dirId a19,20
+data ActionTag =26,27
+    Stand27,28
+    | Run28,29
+    | Walk29,30
+    | Attack30,31
+data Sprite =33,34
+data Sprite = Sprite33,34
+    { _spriteAnimation    ::34,35
+data Animation =37,38
+data Animation = Animation37,38
+    { _animationImage   ::38,39
+    , _animationActions ::39,40
+    , _animationBg      ::40,41
+data AAction =43,44
+data AAction = AAction43,44
+    { _actionMaxFrames ::44,45
+    , _actionX         ::45,46
+    , _actionW         ::46,47
+    , _actionH         ::47,48
+    , _actionFps       ::48,49
+    , _actionBox       ::49,50
+data CollisionBox =52,53
+data CollisionBox = CollisionBox52,53
+    { _collisionboxX ::53,54
+    , _collisionboxY ::54,55
+    , _collisionboxW ::55,56
+    , _collisionboxH ::56,57
+data SpriteStatus =59,60
+data SpriteStatus = SpriteStatus59,60
+    { _spritestatusTag       ::60,61
+    , _spritestatusActionTag ::61,62
+    , _spritestatusFrame     ::62,63
+    , _spritestatusLastFrame ::63,64
+bgGreen ::72,73
+bgGreen =73,74
+
+./End/Header/Player.hs,665
+module End.Header.Player where0,1
+data Player =9,10
+data Player = Player9,10
+              { _playerIden         ::10,11
+              , _playerName         ::11,12
+              , _playerMp           ::12,13
+              , _playerHp           ::13,14
+              , _playerRect         ::14,15
+              , _playerPos          ::15,16
+              , _playerVel          ::16,17
+              , _playerMaxVel       ::17,18
+              , _playerCamera       ::18,19
+              , _playerDirection    ::19,20
+              , _playerSpriteStatus ::20,21
+              , _playerExpire       ::21,22
+              , _playerFunction     ::22,23
+
+./End/Header/Objectlist.hs,124
+module End.Header.Objectlist where0,1
+data Objectlist =5,6
+data Objectlist = Objectlist5,6
+    { _objectlistTemps ::6,7
+
+./End/Header/Object.hs,630
+module End.Header.Object where0,1
+data Obj =7,8
+data Obj = Obj7,8
+    { _objIden      ::8,9
+    , _objName      ::9,10
+    , _objSpriteStatus ::10,11
+    , _objPos       ::11,12
+    , _objVel       ::12,13
+    , _objExpire    ::13,14
+    , _objFunction  ::14,15
+    , _objDirection ::15,16
+data Camera =18,19
+data Camera = Camera18,19
+              { _cameraX ::19,20
+              , _cameraY ::20,21
+data Pos =23,24
+data Pos = Pos23,24
+           { _posX ::24,25
+           , _posY ::25,26
+data Vel =28,29
+data Vel = Vel28,29
+           { _velX ::29,30
+           , _velY ::30,31
+      ) => Object a46,47
+
+./End/UI.hs,131
+module End.UI where0,1
+handleInput ::9,10
+handleInput (KeyDown10,11
+calcVel func25,26
+whileEvents ::34,35
+whileEvents a35,36
+
+./End/Constant/Settings.hs,481
+module End.Constant.Settings where0,1
+screenWidth      ::2,3
+screenHeight     ::3,4
+halfScreenWidth  ::4,5
+halfScreenHeight ::5,6
+tileBit        ::6,7
+mapWidth         ::7,8
+mapHeight        ::8,9
+mapWidthPx       ::9,10
+mapHeightPx      ::10,11
+screenWidth      =11,12
+screenHeight     =12,13
+halfScreenWidth  =13,14
+halfScreenHeight =14,15
+tileBit          =15,16
+mapWidth         =16,17
+mapHeight        =17,18
+mapWidthPx       =18,19
+mapHeightPx      =19,20
+
+./End/Function/Object.hs,375
+module End.Function.Object where0,1
+isExpired ::6,7
+isExpired []7,8
+addObject ::12,13
+addObject s15,16
+removeObj ::17,18
+removeObj _18,19
+runOnSelf ::24,25
+runOnSelf f25,26
+generateID ::27,28
+generateID xs28,29
+generateID' ::32,33
+generateID' _33,34
+    | i `elem` xs =35,36
+getSprite ::38,39
+getSprite b39,40
+getSpriteAction ::41,42
+getSpriteAction b42,43
