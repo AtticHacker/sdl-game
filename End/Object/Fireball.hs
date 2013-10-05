@@ -21,14 +21,4 @@ fireBall = do
         (SpriteStatus FireballT Walk 0 newT)
         (Pos (px + (fI $ v^.w)) (py + 10)) (Vel 0 0) offScreen DUp
 
-goRightObject a o = do
---    o & pos.x +~ (300 * (fromIntegral a / 1000.0))
-    let k = if (o^.pos.x) > 590 then
-           o&lifeTime .~ 0
-            else if (o^.pos.x) < 0 then
-                   o&lifeTime .~ 1
-                 else o
-
-    if k^.lifeTime == 0
-        then k & pos.x +~ ((-300) * (fromIntegral a / 1000.0))
-        else k & pos.x +~ (300 * (fromIntegral a / 1000.0))
+goRightObject a o = o & pos.x +~ (300 * (fromIntegral a / 1000.0))
