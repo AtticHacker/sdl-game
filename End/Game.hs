@@ -10,7 +10,6 @@ import End.Global.Loop ( manageObjects, updateDelta
 
 game :: GameState ()
 game = do
-    view colls >>= liftIO . print . length
     loop
 
 loop :: GameState ()
