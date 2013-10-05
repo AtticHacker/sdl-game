@@ -35,3 +35,11 @@ generateID' _ [] = 1
 generateID' i xs
     | i `elem` xs = generateID' (i+1) xs
     | otherwise   = i
+
+getSprite :: (Object o SpriteStatus) => o -> GameState (Maybe Sprite)
+getSprite b = view images >>= return . lookup (b^.spriteStatus.tag)
+
+getSpriteAction :: (Object o SpriteStatus) => o -> GameState (Maybe AAction)
+getSpriteAction b = do
+    Just sp <- getSprite b
+    return $ lookup (b^.spriteStatus.actionTag) (sp^.animation.actions)

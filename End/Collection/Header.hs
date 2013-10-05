@@ -5,6 +5,7 @@ module End.Collection.Header
        , module End.Header.Objectlist
        , module End.Header.Object.Temp
        , module End.Header.Player
+       , module End.Header.Tile
        ) where
 
 import End.Header.Config
@@ -13,3 +14,4 @@ import End.Header.Object
 import End.Header.Object.Temp
 import End.Header.Objectlist
 import End.Header.Player
+import End.Header.Tile

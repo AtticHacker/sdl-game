@@ -8,6 +8,7 @@ import Control.Monad.Reader
 import End.Header.Player
 import End.Header.Animation
 import End.Header.Objectlist
+import End.Header.Tile
 import Data.Word
 
 data Gamestate = Gamestate
@@ -21,6 +22,9 @@ data Gameconfig = Gameconfig
                   { _gameconfigScreen     :: Screen
                   , _gameconfigGameScreen :: Surface
                   , _gameconfigImages     :: [(SpriteTag, Sprite)]
+                  , _gameconfigTileSet    :: Surface
+                  , _gameconfigGameMap    :: Map
+                  , _gameconfigColls      :: [Rect]
                   }
 
 data Screen = Screen
