@@ -15,7 +15,7 @@ build-type:          Simple
 cabal-version:       >=1.8
 
 
-data-files: images
+data-files: images/
 
 executable project-end
   main-is: Main.hs
@@ -36,4 +36,4 @@ executable project-end
     , SDL-image  >= 0.6
     , bytestring >= 0.9
     , SDL-gfx    >= 0.6
-  ghc-options: -Wall -fno-warn-unused-do-bind
+    , parallel   >= 3.2
